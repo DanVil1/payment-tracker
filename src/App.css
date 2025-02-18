@@ -1,4 +1,3 @@
-/* Ensure the root elements use the full viewport */
 html, body, #root {
   margin: 0;
   padding: 0;
@@ -12,14 +11,12 @@ html, body, #root {
   font-family: Arial, sans-serif;
 }
 
-/* Flex container for the two-panel layout */
 .app-container {
   display: flex;
   width: 100%;
   min-height: 100vh;
 }
 
-/* Left panel: fixed width (200px) with background #121212 */
 .left-panel {
   flex: 0 0 200px;
   background: #121212;
@@ -27,7 +24,6 @@ html, body, #root {
   padding: 20px;
 }
 
-/* Right panel: takes up remaining space; increasing flex growth to 3 */
 .right-panel {
   flex: 3;
   background: #2e2e2e;
@@ -35,7 +31,6 @@ html, body, #root {
   color: #f0f0f0;
 }
 
-/* Right panel: takes up remaining space with dark gray background */
 .right-panel {
   flex: 1;
   background: #2e2e2e;
@@ -43,8 +38,6 @@ html, body, #root {
   color: #f0f0f0;
 }
 
-/* Canvas styling for the cycles list */
-/* Payment cycles grid layout */
 .canvas {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, auto));
@@ -54,8 +47,6 @@ html, body, #root {
   border-radius: 8px;
 }
 
-
-/* Payment cycle card styling */
 .cycle-card {
   background: #3a3a3a;
   padding: 10px;
@@ -64,7 +55,6 @@ html, body, #root {
   border: 1px solid #555;
 }
 
-/* Dialog overlay and dialog styling (same as before) */
 .dialog-overlay {
   position: fixed;
   top: 0;
@@ -123,7 +113,6 @@ html, body, #root {
   background: #e6b800;
 }
 
-/* General button styling for buttons outside dialogs */
 button {
   font-size: 1rem;
   padding: 8px 12px;
