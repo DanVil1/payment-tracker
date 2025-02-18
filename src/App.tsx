@@ -14,7 +14,6 @@ interface PaymentCycle {
   dateRange: string;
 }
 
-// Helper function to compute the cycle range and next cycle start date
 const getCycleRangeAndNext = (
   start: Date
 ): { range: string; nextStart: Date } => {
@@ -51,7 +50,6 @@ const App: React.FC = () => {
   const [showDebtDialog, setShowDebtDialog] = useState<boolean>(true);
   const [showCycleDialog, setShowCycleDialog] = useState<boolean>(false);
 
-  // Determine initial cycle start date based on today's date
   const today = new Date();
   const initialCycleStart =
     today.getDate() <= 15
@@ -59,7 +57,6 @@ const App: React.FC = () => {
       : new Date(today.getFullYear(), today.getMonth(), 16);
   const [nextCycleStart, setNextCycleStart] = useState<Date>(initialCycleStart);
 
-  // Handle submission of the debt dialog
   const handleDebtSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -75,7 +72,6 @@ const App: React.FC = () => {
     }
   };
 
-  // Add a new cycle and update the overall debt and next cycle start
   const addCycle = (cycle: PaymentCycle) => {
     setCycles([...cycles, cycle]);
     setDebt((prevDebt) => (prevDebt !== null ? prevDebt - cycle.debtPayment : 0));
@@ -84,7 +80,6 @@ const App: React.FC = () => {
 
   return (
     <div className="App">
-      {/* Debt Dialog */}
       {showDebtDialog && (
         <div className="dialog-overlay">
           <div className="dialog">
@@ -102,7 +97,6 @@ const App: React.FC = () => {
         </div>
       )}
 
-      {/* Main Content */}
       {!showDebtDialog && (
         <div className="app-container">
           <div className="left-panel">
@@ -151,7 +145,6 @@ const App: React.FC = () => {
         </div>
       )}
 
-      {/* Payment Cycle Dialog */}
       {showCycleDialog && (
         <div className="dialog-overlay">
           <div className="dialog">
@@ -181,17 +174,14 @@ const PaymentCycleForm: React.FC<PaymentCycleFormProps> = ({
   const [receivedMoney, setReceivedMoney] = useState<string>("");
   const [debtPayment, setDebtPayment] = useState<string>("");
 
-  // Dynamic expenses array (first expense is required)
   const [expenses, setExpenses] = useState<{ description: string; amount: string }[]>([
     { description: "", amount: "" },
   ]);
 
-  // Adds a new empty expense row.
   const addExpenseRow = () => {
     setExpenses([...expenses, { description: "", amount: "" }]);
   };
 
-  // Updates a specific expense row.
   const updateExpenseRow = (
     index: number,
     field: "description" | "amount",
@@ -203,14 +193,12 @@ const PaymentCycleForm: React.FC<PaymentCycleFormProps> = ({
     setExpenses(updated);
   };
 
-  // Removes an expense row (except the first which is required).
   const removeExpenseRow = (index: number) => {
     if (index === 0) return;
     const updated = expenses.filter((_, i) => i !== index);
     setExpenses(updated);
   };
 
-  // Compute the free money available based on current inputs.
   const received = parseFloat(receivedMoney) || 0;
   const totalExpenses = expenses.reduce(
     (sum, exp) => sum + (parseFloat(exp.amount) || 0),
@@ -247,7 +235,6 @@ const PaymentCycleForm: React.FC<PaymentCycleFormProps> = ({
     addCycle(cycle);
     onClose();
 
-    // Reset form fields.
     setReceivedMoney("");
     setDebtPayment("");
     setExpenses([{ description: "", amount: "" }]);
@@ -302,7 +289,6 @@ const PaymentCycleForm: React.FC<PaymentCycleFormProps> = ({
             Add Expense
           </button>
         </div>
-        {/* Display free money available dynamically */}
         <p>
           <strong>Free Money Available:</strong>{" "}
           {computedFreeMoney.toLocaleString()}
