@@ -122,6 +122,7 @@ button {
   cursor: pointer;
   transition: background 0.2s ease-in-out;
   margin: 5px 0;
+  color: #2e2e2e;
 }
 
 button:hover {
